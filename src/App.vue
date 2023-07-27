@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="container column">
+    <app-form @submit="addBlock"></app-form>
+    <app-view :blocks="blocks"></app-view>
+  </div>
+  <app-comment-block></app-comment-block>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import AppView from '@/components/AppView.vue';
+import AppForm from '@/components/AppForm.vue';
+import AppCommentBlock from '@/components/AppCommentBlock.vue';
 
 export default {
-  name: "App",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      blocks: [],
+    };
   },
+  methods: {
+    addBlock(block) {
+      this.blocks.push(block);
+      console.log(this.blocks);
+    },
+  },
+  computed: {},
+  components: { AppForm, AppView, AppCommentBlock },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style>
+* {
+  word-wrap: anywhere;
 }
 </style>
